@@ -130,10 +130,3 @@ QByteArray Session::getCookie(){
 std::string Session::prev_page(){
     return history().size() ? "/" : history().back();
 }
-
-<<<<<<< HEAD
-#include <session.moc>
-=======
-
->>>>>>> 1d34f3ce3736acf0ab9bbbdb6d11a3d1cfecaf7f
-
