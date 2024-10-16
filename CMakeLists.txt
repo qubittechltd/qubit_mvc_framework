@@ -15,7 +15,6 @@ target_sources(qubit_mvc_framework_lib INTERFACE
     utilities.cpp
     formdata.cpp
     redirect.cpp
-    secure.cpp
 )
 
 
