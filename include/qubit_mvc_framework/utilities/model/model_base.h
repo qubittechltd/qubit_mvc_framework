@@ -8,7 +8,7 @@
 #include <QUuid>
 #include "qubit_mvc_framework/utilities/migrator.h"
 #include "qubit_mvc_framework/utilities/model/model_base_data.h"
-#include "utilities/model/model_base_impl_sql.h"
+#include "qubit_mvc_framework/utilities/model/model_base_impl_sql.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include "qubit_mvc_framework/utilities/model/model_base_impl.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"
