@@ -17,6 +17,7 @@ target_sources(qubit_mvc_framework_lib INTERFACE
     redirect.cpp
     model/model_privates.cpp
     secure.cpp
+    session.cpp
 )
 
 
