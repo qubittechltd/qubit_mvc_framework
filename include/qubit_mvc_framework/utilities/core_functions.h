@@ -3,13 +3,13 @@
 #define CORE_FUNCTIONS_H
 
 #include "QtCore/qdir.h"
-#include "utilities/qfirebaseapp.h"
-#include "utilities/qrtdatabase.h"
+#include "qubit_mvc_framework/utilities/qfirebaseapp.h"
+#include "qubit_mvc_framework/utilities/qrtdatabase.h"
 #include "qubit_mvc_framework/utilities/utilities.h"
 #include <QtHttpServer/QHttpServer>
 #include <QtHttpServer/QHttpServerResponse>
 #include <models/user_model.h>
-#include <utilities/cachefiles.h>
+#include <qubit_mvc_framework/utilities/cachefiles.h>
 #include <middleware/middleware.h>
 #include <routes/routes.h>
 #include <QSettings>

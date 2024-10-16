@@ -1,10 +1,9 @@
-#include "include/qubit_mvc_framework/utilities/session.h"
-#include "qubit_mvc_framework/utilities/common_p.h"
 #include "QCoreApplication"
-#include "utilities/secure.h"
+#include "qubit_mvc_framework/utilities/session.h"
+#include "qubit_mvc_framework/utilities/secure.h"
+#include "qubit_mvc_framework/utilities/common_p.h"
 #include <QThread>
 #include <QUuid>
-#include <vector>
 
 std::vector<Session*> sessions;//multithreading
 bool operator == (const Session *c ,const QByteArray &token){
@@ -132,5 +131,9 @@ std::string Session::prev_page(){
     return history().size() ? "/" : history().back();
 }
 
+<<<<<<< HEAD
 #include <session.moc>
+=======
+
+>>>>>>> 1d34f3ce3736acf0ab9bbbdb6d11a3d1cfecaf7f
 

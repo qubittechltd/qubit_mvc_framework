@@ -4,10 +4,16 @@
 #include <QDeadlineTimer>
 #include <QtHttpServer/QHttpServerRequest>
 #include <QObject>
+<<<<<<< HEAD
 #include <exception>
 #include "models/user_model.h"
 #include "qubit_mvc_framework/utilities/common_p.h"
 #include "utilities/controller.h"
+=======
+#include "models/user_model.h"
+#include "qubit_mvc_framework/utilities/common_p.h"
+#include "qubit_mvc_framework/utilities/controller.h"
+>>>>>>> 1d34f3ce3736acf0ab9bbbdb6d11a3d1cfecaf7f
 
 class ControllerDeletedException : std::exception{};
 class ControllerTimeOutException : std::exception{};
@@ -43,8 +49,12 @@ private:
     T * c;
 };
 
+<<<<<<< HEAD
 
 class __attribute__((visibility("default"))) Session : public QObject{
+=======
+class Session : public QObject{
+>>>>>>> 1d34f3ce3736acf0ab9bbbdb6d11a3d1cfecaf7f
     Q_OBJECT
     friend class LoginController;
     friend class RegisterController;
