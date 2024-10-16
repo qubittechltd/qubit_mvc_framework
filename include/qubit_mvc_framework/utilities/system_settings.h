@@ -9,7 +9,7 @@
 #include <QMetaType>
 #include <QSharedPointer>
 #include <QtGlobal>
-#include "utilities/qrtdatabase.h"
+#include "qubit_mvc_framework/utilities/qrtdatabase.h"
 #include "QReadWriteLock"
 #include "QAtomicInteger"
 #include "QMetaObject"
