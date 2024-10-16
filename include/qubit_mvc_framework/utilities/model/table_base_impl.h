@@ -5,7 +5,7 @@
 #include <QMetaProperty>
 #include <QDateTime>
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"
-#include "utilities/model/table_base.h"
+#include "qubit_mvc_framework/utilities/model/table_base.h"
 
 
 #define PARAM_INIT(CLASS) ParamInitializer<ParamsBaseImpl<CLASS>> _ = this;

@@ -3,7 +3,7 @@
 #define JOB_MODEL_H
 #include <utilities/model/model.h>
 #include <utilities/model/model_relationships.h>
-#include <utilities/system_settings.h>
+#include <qubit_mvc_framework/utilities/system_settings.h>
 #include <QSqlQuery>
 
 class JobParams : public ParamsBaseImpl<JobParams>  {
