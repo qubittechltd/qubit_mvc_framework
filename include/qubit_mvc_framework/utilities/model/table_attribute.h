@@ -3,7 +3,7 @@
 #include <QReadWriteLock>
 #include <type_traits>
 #include <QReadLocker>
-#include "config/app.h"
+// #include "config/app.h"
 #include "qubit_mvc_framework/utilities/model/sql_operator.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"

@@ -10,7 +10,7 @@ bool operator == (const Session *c ,const QByteArray &token){
     return c->token == token;
 }
 Session::Session(const QByteArray &t,const QDeadlineTimer & rememberMe, QObject *parent)
-    : token(t),remember_me(rememberMe),QObject{parent}, _user(UserModel::Default())
+    : token(t),remember_me(rememberMe),QObject{parent}, _user(UserModelImpl::Default())
 {
      ::sessions.push_back(this);
 }
@@ -53,7 +53,7 @@ bool token_has_exipired(const QByteArray &token){
     return false;
 }
 
-void Session::set_user(UserModel & u){
+void Session::set_user(UserModelImpl & u){
     _user = u;
 }
 
@@ -106,7 +106,7 @@ std::tuple<Session *, bool> Session::user_session_t(const QHttpServerRequest &re
     return std::make_tuple(session,session_found);
 }
 
-UserModel Session::user() const {
+UserModelImpl Session::user() const {
     return _user;
 }
 void Session::logout(){

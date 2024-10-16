@@ -5,7 +5,7 @@
 #include <QtHttpServer/QHttpServerRequest>
 #include <QObject>
 
-#include "models/user_model.h"
+#include "qubit_mvc_framework/models/user_model_impl.h"
 #include "qubit_mvc_framework/utilities/common_p.h"
 #include "qubit_mvc_framework/utilities/controller.h"
 
@@ -51,7 +51,8 @@ class Session : public QObject{
     friend class ResetController;
 protected:
 
-    void set_user(UserModel &user);
+
+    void set_user(UserModelImpl &user);
 
     // template<typename ... Args>
     // const auto & history(Args && ... args,bool save_or_all=false){
@@ -71,7 +72,7 @@ public:
 
     static std::tuple<Session*, bool> user_session_t(const QHttpServerRequest &request,const QDeadlineTimer & rememberMe = QDeadlineTimer(std::chrono::days(REMEMEMBER_ME_DAYS)));
 
-    UserModel user() const;
+    UserModelImpl user() const;
 
     void logout();
 
@@ -117,7 +118,7 @@ private:
     ~Session();
     qint64 hits = 0;
     const QDeadlineTimer remember_me;
-    UserModel _user;
+    UserModelImpl _user;
 };
 
 #endif // SESSION_H

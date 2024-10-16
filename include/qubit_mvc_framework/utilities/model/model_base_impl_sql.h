@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QThread>
-#include <config/app.h>
+// #include <config/app.h>
 #include "qubit_mvc_framework/utilities/model/model_base_impl.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"
