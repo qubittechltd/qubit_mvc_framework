@@ -1,0 +1,6 @@
+#ifndef MIGRATION_MODEL_H
+#define MIGRATION_MODEL_H
+
+
+
+#endif // MIGRATION_MODEL_H
