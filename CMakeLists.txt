@@ -16,6 +16,7 @@ target_sources(qubit_mvc_framework_lib INTERFACE
     formdata.cpp
     redirect.cpp
     model/model_privates.cpp
+    secure.cpp
 )
 
 
