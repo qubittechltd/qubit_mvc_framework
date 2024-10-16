@@ -1,8 +1,8 @@
 #ifndef MODELBASEDATA_H
 #define MODELBASEDATA_H
 
-#include "utilities/model/sql_query.h"
-#include "utilities/model/table_attribute_base.h"
+#include "qubit_mvc_framework/utilities/model/sql_query.h"
+#include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include <QByteArray>
 #include <QUuid>
 #include <QAtomicInteger>
