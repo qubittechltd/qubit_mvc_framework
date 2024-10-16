@@ -7,9 +7,14 @@ project(qubit_mvc_framework LANGUAGES C CXX)
 
 add_library(qubit_mvc_framework_lib INTERFACE)
 
+# set_target_properties(qubit_mvc_framework_lib PROPERTIES
+#   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
+#                                 "${CMAKE_CURRENT_SOURCE_DIR}/include/model"
+# )
+
 set_target_properties(qubit_mvc_framework_lib PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
-                                "${CMAKE_CURRENT_SOURCE_DIR}/include/model"
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include/model"
 )
 
 target_sources(qubit_mvc_framework_lib INTERFACE
