@@ -5,14 +5,15 @@ set(CMAKE_C_STANDARD 17)
 
 project(qubit_mvc_framework LANGUAGES C CXX)
 
-
 add_library(qubit_mvc_framework_lib INTERFACE)
-target_sources(qubit_mvc_framework_lib
-    PRIVATE
-        utilities.cpp
+
+set_target_properties(qubit_mvc_framework_lib PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-target_include_directories(qubit_mvc_framework_lib PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
+target_sources(qubit_mvc_framework_lib INTERFACE
+    utilities.cpp
 )
+
+
 

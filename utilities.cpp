@@ -1,4 +1,4 @@
-#include "utilities/utilities.h"
+#include "qubit_mvc_framework/utilities/utilities.h"
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonValue>
