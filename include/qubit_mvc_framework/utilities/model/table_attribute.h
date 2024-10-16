@@ -78,9 +78,9 @@ public:
 
     template<typename T=void>
     requires FIELD_IS_QDATETIME<FIELD>
-    TableAttribute(const char * v):TableAttribute(QDateTime::fromString(QString::fromStdString(v),QUBIT_MVC_APP::database_datetime_format())){}
+    TableAttribute(const char * v):TableAttribute(QDateTime::fromString(QString::fromStdString(v),QUBIT_MVC_APP::instance().database_datetime_format())){}
 
-    TableAttribute(const QDateTime &v):TableAttributeImpl(v.toString(QUBIT_MVC_APP::database_datetime_format())){}
+    TableAttribute(const QDateTime &v):TableAttributeImpl(v.toString(QUBIT_MVC_APP::instance().database_datetime_format())){}
 
     TableAttribute& operator=(const QDateTime &v) {
         *this = QVariant::fromValue(v.toString("yyyy-MM-dd hh:mm:ss"));

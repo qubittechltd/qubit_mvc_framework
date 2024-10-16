@@ -4,13 +4,14 @@
 #include <QString>
 #include <QTimeZone>
 
-struct QUBIT_MVC_APP{
-    static QTimeZone timezone();
-    static QString database_datetime_format();
-    static int job_queue_limit();
-    static int tries();
-    static int retry_after();
-    static int model_cache_time();
+struct QUBIT_MVC_APP {
+    static QUBIT_MVC_APP instance();
+    QTimeZone timezone();
+    QString database_datetime_format();
+    int job_queue_limit();
+    int tries();
+    int retry_after();
+    int model_cache_time();
 };
 
 
