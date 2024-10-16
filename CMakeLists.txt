@@ -10,9 +10,9 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-# if(DEFINED Qt6_DIR)
+if(DEFINED Qt6_DIR)
     include(${Qt6_DIR}/qt.toolchain.cmake)
-# endif()
+endif()
 
 find_package(Qt6 REQUIRED COMPONENTS
     Core
@@ -22,12 +22,15 @@ find_package(Qt6 REQUIRED COMPONENTS
 )
 
 add_library(qubit_mvc_framework_lib STATIC
-    utilities.cpp
+    cachefiles.cpp
     formdata.cpp
-    redirect.cpp
-    session.cpp
-    session.cpp
     middleware.cpp
+    qrtdatabase.cpp
+    redirect.cpp
+    sanitizer.cpp
+    secure.cpp
+    session.cpp
+    utilities.cpp
 )
 
 set_target_properties(qubit_mvc_framework_lib PROPERTIES
@@ -43,17 +46,7 @@ find_package(Qt6 REQUIRED COMPONENTS
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# target_include_directories(qubit_mvc_framework_lib INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
-
-# target_sources(qubit_mvc_framework_lib INTERFACE
-#     utilities.cpp
-#     formdata.cpp
-#     redirect.cpp
-#     session.cpp
-# )
-
-
-target_link_libraries(qubit_mvc_framework_lib INTERFACE
+target_link_libraries(qubit_mvc_framework_lib
     Qt6::Core
     Qt6::Sql
     Qt6::Network
