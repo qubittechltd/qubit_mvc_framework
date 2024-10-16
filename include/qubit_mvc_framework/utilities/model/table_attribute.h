@@ -3,7 +3,7 @@
 #include <QReadWriteLock>
 #include <type_traits>
 #include <QReadLocker>
-// #include "config/app.h"
+#include "qubit_mvc_framework/config/app.h"
 #include "qubit_mvc_framework/utilities/model/sql_operator.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"
@@ -78,9 +78,9 @@ public:
 
     template<typename T=void>
     requires FIELD_IS_QDATETIME<FIELD>
-    TableAttribute(const char * v):TableAttribute(QDateTime::fromString(QString::fromStdString(v),app::database_datetime_format)){}
+    TableAttribute(const char * v):TableAttribute(QDateTime::fromString(QString::fromStdString(v),QUBIT_MVC_APP::database_datetime_format())){}
 
-    TableAttribute(const QDateTime &v):TableAttributeImpl(v.toString(app::database_datetime_format)){}
+    TableAttribute(const QDateTime &v):TableAttributeImpl(v.toString(QUBIT_MVC_APP::database_datetime_format())){}
 
     TableAttribute& operator=(const QDateTime &v) {
         *this = QVariant::fromValue(v.toString("yyyy-MM-dd hh:mm:ss"));

@@ -1,8 +1,25 @@
-#include "app.h"
+#include "qubit_mvc_framework/config/app.h"
 
-const QTimeZone app::timezone = QTimeZone::utc();
-const QString   app::database_datetime_format="yyyy-MM-dd hh:mm:ss" ;
-const int       app::job_queue_limit = 5 ;
-const int       app::tries = 5 ;
-const int       app::retry_after = 5 ;
-const int       app::model_cache_time = 5000 ; // 300 milliseconds
+
+inline QTimeZone QUBIT_MVC_APP::timezone(){
+    return QTimeZone::utc();
+}
+inline QString QUBIT_MVC_APP::database_datetime_format(){
+    return "yyyy-MM-dd hh:mm:ss";
+}
+
+inline int QUBIT_MVC_APP::job_queue_limit(){
+    return 5;
+}
+
+inline int QUBIT_MVC_APP::tries(){
+    return 5;
+}
+
+inline int QUBIT_MVC_APP::retry_after(){
+    return 5;
+}
+
+inline int QUBIT_MVC_APP::model_cache_time(){
+    return 5000;
+}

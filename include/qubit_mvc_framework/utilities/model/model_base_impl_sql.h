@@ -7,7 +7,7 @@
 #include <QSqlQuery>
 #include <QSqlRecord>
 #include <QThread>
-// #include <config/app.h>
+#include <qubit_mvc_framework/config/app.h>
 #include "qubit_mvc_framework/utilities/model/model_base_impl.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"
@@ -64,7 +64,7 @@ public:
                     switch (qvariant.metaType().id()) {
                     case QMetaType::QDateTime:{
                         auto dateTime = qvariant.value<QDateTime>();
-                        obj.insert(s->name(),dateTime.toString(app::database_datetime_format));
+                        obj.insert(s->name(),dateTime.toString(QUBIT_MVC_APP::database_datetime_format()));
                         break;
                     }
                     default:
@@ -286,8 +286,8 @@ public:
                 auto data = s->value();
                 if(s->isOfType(typeid(QDateTime))){
                     if(!data.isNull()){
-                        data = app::database_datetime_format.isEmpty() ? s->template value<QDateTime>().toString() :
-                                   s->template value<QDateTime>().toString(app::database_datetime_format);
+                        data = QUBIT_MVC_APP::database_datetime_format().isEmpty() ? s->template value<QDateTime>().toString() :
+                                   s->template value<QDateTime>().toString(QUBIT_MVC_APP::database_datetime_format());
                     }
                 }
                 if(primary_key == s || !data.isValid()){

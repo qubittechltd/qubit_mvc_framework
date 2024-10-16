@@ -6,8 +6,6 @@
 #include "qubit_mvc_framework/utilities/system_settings.h"
 #include <QDateTime>
 
-
-
 class ProductModel;
 class UserParamsImpl : public ParamsBaseImpl<UserParamsImpl> {
     Q_GADGET
@@ -19,7 +17,9 @@ Q_DECLARE_METATYPE(UserParamsImpl)
 class UserModelImpl :  public ModelBase<UserModelImpl,UserParamsImpl> {
     MODEL_INIT(UserModelImpl,UserParamsImpl)
 public:
-
+    static bool init_db(QSqlDatabase & default_db){
+        return false;
+    }
 
 };
 
