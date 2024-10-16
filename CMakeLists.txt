@@ -5,20 +5,57 @@ set(CMAKE_C_STANDARD 17)
 
 project(qubit_mvc_framework LANGUAGES C CXX)
 
-add_library(qubit_mvc_framework_lib INTERFACE)
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_AUTOMOC ON)
+
+# if(DEFINED Qt6_DIR)
+    include(${Qt6_DIR}/qt.toolchain.cmake)
+# endif()
+
+find_package(Qt6 REQUIRED COMPONENTS
+    Core
+    Sql
+    Network
+    Concurrent
+)
+
+add_library(qubit_mvc_framework_lib STATIC
+    utilities.cpp
+    formdata.cpp
+    redirect.cpp
+    session.cpp
+    session.cpp
+    middleware.cpp
+)
 
 set_target_properties(qubit_mvc_framework_lib PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-target_sources(qubit_mvc_framework_lib INTERFACE
-    utilities.cpp
-    formdata.cpp
-    redirect.cpp
-    model/model_privates.cpp
-    secure.cpp
-    session.cpp
+find_package(Qt6 REQUIRED COMPONENTS
+    Core
+    Sql
+    Network
+    Concurrent
 )
 
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+# target_include_directories(qubit_mvc_framework_lib INTERFACE "${CMAKE_CURRENT_SOURCE_DIR}/include")
+
+# target_sources(qubit_mvc_framework_lib INTERFACE
+#     utilities.cpp
+#     formdata.cpp
+#     redirect.cpp
+#     session.cpp
+# )
 
 
+target_link_libraries(qubit_mvc_framework_lib INTERFACE
+    Qt6::Core
+    Qt6::Sql
+    Qt6::Network
+    Qt6::Concurrent
+)
