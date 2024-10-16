@@ -1,4 +1,4 @@
-#include "redirect.h"
+#include "qubit_mvc_framework/utilities/redirect.h"
 #include "QDebug"
 QByteArray redirect(QByteArray new_route){
 QByteArray data=""
