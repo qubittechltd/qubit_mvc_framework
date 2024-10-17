@@ -1,3 +1,7 @@
+if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
+    return() #to avoid recursion of including or add project
+endif()
+
 cmake_minimum_required(VERSION 3.29)
 
 set(CMAKE_CXX_STANDARD 23)
@@ -37,10 +41,19 @@ add_library(qubit_mvc_framework_lib STATIC
 
 message(STATUS "The current project name is: ${PROJECT_NAME}")
 
+if(NOT DEFINED VENDOR_BINARY_DIR)
+    set(VENDOR_BINARY_DIR "/Users/mac/projects/simple_mvc_sunday/build_Debug/vendor")
+endif()
+if(NOT DEFINED VENDOR_SRC_DIR)
+    set(VENDOR_SRC_DIR "/Users/mac/projects/simple_mvc_sunday/vendor/")
+endif()
+if(NOT DEFINED VENDOR_PREFIX_DIR)
+    set(VENDOR_PREFIX_DIR "/Users/mac/projects/simple_mvc_sunday/build_Debug/vendor")
+endif()
+
 add_subdirectory(
-  "/Users/mac/projects/simple_mvc_sunday/vendor/"
-  "/Users/mac/projects/simple_mvc_sunday/build_Debug/vendor/qubit_mvc_framework/vendor/"
-  # "${CMAKE_CURRENT_BINARY_DIR}/vendor_build"
+  "${VENDOR_SRC_DIR}"
+  "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/"
 )
 # include_interface(/Users/mac/projects/simple_mvc_sunday/vendor/cmake/firebase_cpp_sdk.cmake vendor_repo_libs)
 # include_interface(/Users/mac/projects/simple_mvc_sunday/vendor/cmake/qtbase.cmake   )
@@ -49,21 +62,7 @@ set_target_properties(qubit_mvc_framework_lib PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
 )
 
-# find_package(Qt6 REQUIRED COMPONENTS
-#     Core
-#     Sql
-#     Network
-#     Concurrent
-# )
-
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-# target_link_libraries(qubit_mvc_framework_lib
-#     Qt6::Core
-#     Qt6::Sql
-#     Qt6::Network
-#     Qt6::Concurrent
-# )
 
 target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
 

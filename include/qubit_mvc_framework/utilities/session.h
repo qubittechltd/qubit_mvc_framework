@@ -52,8 +52,12 @@ class Session : public QObject{
 protected:
 
 
-    void set_user(UserModelImpl &user);
-
+    template<typename UserModel>
+    void set_user(UserModel & u){
+        auto user = new UserModel();
+        *user = u;
+        _user.reset(user);
+    }
     // template<typename ... Args>
     // const auto & history(Args && ... args,bool save_or_all=false){
     //     std::tuple<Args ...> tuple = std::make_tuple(args...);
@@ -72,7 +76,18 @@ public:
 
     static std::tuple<Session*, bool> user_session_t(const QHttpServerRequest &request,const QDeadlineTimer & rememberMe = QDeadlineTimer(std::chrono::days(REMEMEMBER_ME_DAYS)));
 
-    UserModelImpl user() const;
+    template<typename UserModel = UserModelImpl>
+    UserModel user() const {
+        if(!_user){
+            return UserModel::Default();
+        }
+        if constexpr ( std::same_as<UserModel,UserModelImpl> ){
+            return *_user.get();
+        }else{
+            auto user = std::static_pointer_cast<UserModel>(_user);
+            return *user.get();
+        }
+    }
 
     void logout();
 
@@ -118,7 +133,7 @@ private:
     ~Session();
     qint64 hits = 0;
     const QDeadlineTimer remember_me;
-    UserModelImpl _user;
+    std::shared_ptr<UserModelImpl> _user = nullptr;
 };
 
 #endif // SESSION_H
