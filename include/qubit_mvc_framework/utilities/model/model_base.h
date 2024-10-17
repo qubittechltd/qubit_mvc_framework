@@ -40,7 +40,9 @@ protected:
 public:
     static inline auto Default() { return MODEL();}
 
-    static inline auto DefaultShr() { return std::make_shared<MODEL>();}
+    static inline auto DefaultShr() {
+        return std::shared_ptr<MODEL>(new MODEL());
+    }
 
     static inline auto create(const PARAMS &p){
         return  MODEL(p);;
