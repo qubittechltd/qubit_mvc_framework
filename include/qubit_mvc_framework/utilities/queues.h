@@ -11,8 +11,8 @@
 #include <QReadLocker>
 #include <QTimer>
 #include <QDateTime>
-#include <qubit_mvc_framework/utilities/model/sample_models/job_fail_model.h>
-#include <qubit_mvc_framework/utilities/model/sample_models/job_model.h>
+#include <qubit_mvc_framework/models/job_fail_model.h>
+#include <qubit_mvc_framework/models/job_model.h>
 
 
 class JobImpl {
@@ -105,12 +105,12 @@ private slots:
     void process_jobs(){
 
         auto now = QDateTime::currentDateTimeUtc();
-        auto now_str = now.toString(app::database_datetime_format);
+        auto now_str = now.toString(QUBIT_MVC_APP::instance().database_datetime_format());
 
         auto updated_rows = JobModel::whereNull("reserved_at")
                                 ->orWhere("available_at",">=",now_str)
                                 ->orderBy("created_at")
-                                ->limit(app::job_queue_limit)
+                                ->limit(QUBIT_MVC_APP::instance().job_queue_limit())
                                 ->update({
                                     .reserved_at = now
                                 });
@@ -122,7 +122,7 @@ private slots:
                 ->orWhere("available_at",">=",now_str)
                 ->where("queue",">=",_name)
                 ->orderBy("created_at")
-                ->limit(std::min(updated_rows,app::job_queue_limit))
+                       ->limit(std::min(updated_rows,QUBIT_MVC_APP::instance().job_queue_limit()))
                 ->get();
         }
 
@@ -148,7 +148,7 @@ private slots:
 
                                 job->attempts = job->attempts() + 1;
 
-                                if(job->attempts() < (app::tries + 1)){
+                                if(job->attempts() < (QUBIT_MVC_APP::instance().tries() + 1)){
 
                                     job->reserved_at = QDateTime();
                                     job->available_at = QDateTime::currentDateTimeUtc().addMSecs(2 ^ job->attempts());
