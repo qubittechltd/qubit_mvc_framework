@@ -52,22 +52,16 @@ if(NOT DEFINED VENDOR_PREFIX_DIR)
 endif()
 
 
-if(NOT DEFINED VENDOR_RECIPES_AS_STRING)
+if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
     string(REPLACE ";" " " VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
 else()
     set(VENDOR_RECIPES_AS_LIST "firebase_cpp_sdk.cmake" "qtbase.cmake")
+    list(JOIN VENDOR_RECIPES_AS_LIST ";" VENDOR_RECIPES_AS_STRING)
 endif()
 
 message(STATUS "qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
 
-
-
-add_subdirectory(
-  "${VENDOR_SRC_DIR}"
-  "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/"
-)
-# include_interface(/Users/mac/projects/simple_mvc_sunday/vendor/cmake/firebase_cpp_sdk.cmake vendor_repo_libs)
-# include_interface(/Users/mac/projects/simple_mvc_sunday/vendor/cmake/qtbase.cmake   )
+add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
 
 set_target_properties(qubit_mvc_framework_lib PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
