@@ -51,6 +51,12 @@ if(NOT DEFINED VENDOR_PREFIX_DIR)
     set(VENDOR_PREFIX_DIR "/Users/mac/projects/simple_mvc_sunday/build_Debug/vendor")
 endif()
 
+
+# Convert the semicolon-separated string back into a list
+string(REPLACE ";" " " VENDOR_RECIPES_AS_STRING "${VENDOR_RECIPES}")
+message(STATUS "Vendor recipes: ${VENDOR_RECIPES_AS_STRING}")
+
+
 add_subdirectory(
   "${VENDOR_SRC_DIR}"
   "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/"
