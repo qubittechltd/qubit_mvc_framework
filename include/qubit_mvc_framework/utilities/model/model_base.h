@@ -24,7 +24,7 @@ class  ModelBase : public ModelBaseImplSqlOrm<MODEL,PARAMS> {
     friend struct Eloquent::OrmEndFirst<MODEL>;
     friend struct Migrator<MODEL,PARAMS>;
     friend struct DeMigrator<MODEL,PARAMS>;
-
+    // friend class DeMigrator<MODEL,PARAMS>;
     template<typename FIELD> friend class SAVABLE;
     template<typename M> friend struct Eloquent::FromCPO;
     friend class Migration;
@@ -39,6 +39,8 @@ protected:
 
 public:
     static inline auto Default() { return MODEL();}
+
+    static inline auto DefaultShr() { return std::make_shared<MODEL>();}
 
     static inline auto create(const PARAMS &p){
         return  MODEL(p);;

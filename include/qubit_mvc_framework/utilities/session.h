@@ -55,9 +55,13 @@ protected:
 
     template<typename UserModel>
     void set_user(UserModel & u){
-        auto user = new UserModel();
-        *user = u;
-        _user.reset(user);
+        if constexpr ( std::same_as<UserModel,UserModelImpl> ){
+            _user = std::make_shared<UserModel>() ;
+        }else{
+            auto user = UserModel::DefaultShr();
+            *user = u;
+            _user= std::static_pointer_cast<UserModel>(user);
+        }
     }
     // template<typename ... Args>
     // const auto & history(Args && ... args,bool save_or_all=false){
@@ -79,12 +83,15 @@ public:
 
     template<typename UserModel = UserModelImpl>
     UserModel user() const {
-        if(!_user){
-            return UserModel::Default();
-        }
         if constexpr ( std::same_as<UserModel,UserModelImpl> ){
+            if(!_user){
+                return UserModel();
+            }
             return *_user.get();
         }else{
+            if(!_user){
+                return UserModel::Default();
+            }
             auto user = std::static_pointer_cast<UserModel>(_user);
             return *user.get();
         }

@@ -14,12 +14,19 @@ public:
 };
 Q_DECLARE_METATYPE(UserParamsImpl)
 
-class UserModelImpl :  public ModelBase<UserModelImpl,UserParamsImpl> {
-    MODEL_INIT(UserModelImpl,UserParamsImpl)
+
+class UserModelImpl  {
 public:
     static bool init_db(QSqlDatabase & default_db){
         return false;
     }
+    operator bool(){
+        return false;
+    }
+
+    // static inline auto Default() { return UserModelImpl();}
+
+    // static inline auto DefaultShr() { return std::make_shared<UserModelImpl>();}
 
 };
 
