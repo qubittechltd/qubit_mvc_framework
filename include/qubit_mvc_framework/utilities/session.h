@@ -4,6 +4,7 @@
 #include <QDeadlineTimer>
 #include <QtHttpServer/QHttpServerRequest>
 #include <QObject>
+#include <concepts>
 
 #include "qubit_mvc_framework/models/user_model_impl.h"
 #include "qubit_mvc_framework/utilities/common_p.h"
