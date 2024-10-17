@@ -13,6 +13,7 @@ class Controller : public QObject{
     Q_OBJECT
 public:
     explicit Controller(QObject *parent):QObject(parent){};
+    ~Controller(){}
 protected:
     QReadWriteLock lock;
 };
