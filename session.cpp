@@ -106,7 +106,7 @@ std::tuple<Session *, bool> Session::user_session_t(const QHttpServerRequest &re
 
 void Session::logout(){
     if(_user)
-        _user.get()->reset();
+        _user.reset();
 }
 
 QByteArray Session::getCookie(){
