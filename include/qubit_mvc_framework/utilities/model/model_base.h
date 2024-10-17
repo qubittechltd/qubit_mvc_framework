@@ -399,7 +399,7 @@ protected:
     }
 
     static quint64 UseCache(){
-        return QUBIT_MVC_APP::instance().model_cache_time();
+        return QUBIT_MVC_APP::instance()->model_cache_time();
     }
 
     inline PARAMS * params(){

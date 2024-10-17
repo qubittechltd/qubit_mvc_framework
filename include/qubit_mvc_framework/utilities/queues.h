@@ -105,12 +105,12 @@ private slots:
     void process_jobs(){
 
         auto now = QDateTime::currentDateTimeUtc();
-        auto now_str = now.toString(QUBIT_MVC_APP::instance().database_datetime_format());
+        auto now_str = now.toString(QUBIT_MVC_APP::instance()->database_datetime_format());
 
         auto updated_rows = JobModel::whereNull("reserved_at")
                                 ->orWhere("available_at",">=",now_str)
                                 ->orderBy("created_at")
-                                ->limit(QUBIT_MVC_APP::instance().job_queue_limit())
+                                ->limit(QUBIT_MVC_APP::instance()->job_queue_limit())
                                 ->update({
                                     .reserved_at = now
                                 });
@@ -122,7 +122,7 @@ private slots:
                 ->orWhere("available_at",">=",now_str)
                 ->where("queue",">=",_name)
                 ->orderBy("created_at")
-                       ->limit(std::min(updated_rows,QUBIT_MVC_APP::instance().job_queue_limit()))
+                       ->limit(std::min(updated_rows,QUBIT_MVC_APP::instance()->job_queue_limit()))
                 ->get();
         }
 
@@ -148,7 +148,7 @@ private slots:
 
                                 job->attempts = job->attempts() + 1;
 
-                                if(job->attempts() < (QUBIT_MVC_APP::instance().tries() + 1)){
+                                if(job->attempts() < (QUBIT_MVC_APP::instance()->tries() + 1)){
 
                                     job->reserved_at = QDateTime();
                                     job->available_at = QDateTime::currentDateTimeUtc().addMSecs(2 ^ job->attempts());

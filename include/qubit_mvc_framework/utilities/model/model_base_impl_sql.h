@@ -64,7 +64,7 @@ public:
                     switch (qvariant.metaType().id()) {
                     case QMetaType::QDateTime:{
                         auto dateTime = qvariant.value<QDateTime>();
-                        obj.insert(s->name(),dateTime.toString(QUBIT_MVC_APP::instance().database_datetime_format()));
+                        obj.insert(s->name(),dateTime.toString(QUBIT_MVC_APP::instance()->database_datetime_format()));
                         break;
                     }
                     default:
@@ -286,8 +286,8 @@ public:
                 auto data = s->value();
                 if(s->isOfType(typeid(QDateTime))){
                     if(!data.isNull()){
-                        data = QUBIT_MVC_APP::instance().database_datetime_format().isEmpty() ? s->template value<QDateTime>().toString() :
-                                   s->template value<QDateTime>().toString(QUBIT_MVC_APP::instance().database_datetime_format());
+                        data = QUBIT_MVC_APP::instance()->database_datetime_format().isEmpty() ? s->template value<QDateTime>().toString() :
+                                   s->template value<QDateTime>().toString(QUBIT_MVC_APP::instance()->database_datetime_format());
                     }
                 }
                 if(primary_key == s || !data.isValid()){
