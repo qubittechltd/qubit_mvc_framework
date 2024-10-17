@@ -12,6 +12,7 @@
 #include "qubit_mvc_framework/utilities/model/table_attribute_base.h"
 #include "qubit_mvc_framework/utilities/model/model_base_impl.h"
 #include "qubit_mvc_framework/utilities/model/table_attribute_impl.h"
+#include <qubit_mvc_framework/config/app.h>
 #include <QRandomGenerator>
 #if defined(__GNUC__) || defined(__clang__)
 #include <cxxabi.h> //for abi::__cxa_demangle
@@ -56,7 +57,6 @@ public:
         }
         return std::move(vec);
     }
-
 
     static void squeeze(){
         qint64 _cached_index (0);
@@ -202,8 +202,6 @@ public:
             return 0;
         });
     }
-
-
 
 protected:
 
@@ -564,7 +562,6 @@ protected:
     static ModelBaseData<PARAMS> * createData(const PARAMS & p) {
         return new ModelBaseData<PARAMS>(p);
     }
-
 
 private:
     std::shared_ptr<ModelBaseData<PARAMS>>  _temp_sh_data_ptr;
