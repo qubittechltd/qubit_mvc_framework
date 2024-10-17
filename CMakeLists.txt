@@ -52,9 +52,14 @@ if(NOT DEFINED VENDOR_PREFIX_DIR)
 endif()
 
 
-# Convert the semicolon-separated string back into a list
-string(REPLACE ";" " " VENDOR_RECIPES_AS_STRING "${VENDOR_RECIPES}")
-message(STATUS "Vendor recipes: ${VENDOR_RECIPES_AS_STRING}")
+if(NOT DEFINED VENDOR_RECIPES_AS_STRING)
+    string(REPLACE ";" " " VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
+else()
+    set(VENDOR_RECIPES_AS_LIST "firebase_cpp_sdk.cmake" "qtbase.cmake")
+endif()
+
+message(STATUS "qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
+
 
 
 add_subdirectory(
