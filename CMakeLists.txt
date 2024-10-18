@@ -59,7 +59,7 @@ else()
     list(JOIN VENDOR_RECIPES_AS_LIST ";" VENDOR_RECIPES_AS_STRING)
 endif()
 
-message(STATUS "qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
+message(STATUS "vendor/qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
 
 add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
 
