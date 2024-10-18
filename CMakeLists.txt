@@ -53,11 +53,11 @@ endif()
 
 
 if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
-    string(REPLACE ";" " " VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
+    string(REPLACE ":" " " VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
 else()
     set(VENDOR_RECIPES_AS_LIST)
     list(APPEND VENDOR_RECIPES_AS_LIST "firebase_cpp_sdk.cmake" "qtbase.cmake" "openssl.cmake" "custom_http_server.cmake")
-    list(JOIN VENDOR_RECIPES_AS_LIST ";" VENDOR_RECIPES_AS_STRING)
+    list(JOIN VENDOR_RECIPES_AS_LIST ":" VENDOR_RECIPES_AS_STRING)
 endif()
 
 message(STATUS "vendor/qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
