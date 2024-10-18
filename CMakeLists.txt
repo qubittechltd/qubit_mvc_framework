@@ -75,7 +75,7 @@ add_library(qubit_mvc_framework_lib STATIC
     ${INCLUDE_PATH}/qubit_mvc_framework/config/app.h
 
     ${INCLUDE_PATH}/qubit_mvc_framework/models/job_fail_model.h
-    ${INCLUDE_PATH}/qubit_mvc_framework/models/job_model.h
+    # ${INCLUDE_PATH}/qubit_mvc_framework/models/job_model.h
     ${INCLUDE_PATH}/qubit_mvc_framework/models/migration_history.h
     ${INCLUDE_PATH}/qubit_mvc_framework/models/migration_model.h
     ${INCLUDE_PATH}/qubit_mvc_framework/models/user_model_impl.h

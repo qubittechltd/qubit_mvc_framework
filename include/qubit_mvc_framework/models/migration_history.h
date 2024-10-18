@@ -1,8 +1,8 @@
 #pragma once
 #ifndef JOB_MODEL_H
 #define JOB_MODEL_H
-#include <utilities/model/model.h>
-#include <utilities/model/model_relationships.h>
+#include <qubit_mvc_framework/utilities/model/model.h>
+#include <qubit_mvc_framework/utilities/model/model_relationships.h>
 #include <qubit_mvc_framework/utilities/system_settings.h>
 #include <QSqlQuery>
 
