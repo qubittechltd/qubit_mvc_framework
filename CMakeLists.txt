@@ -106,7 +106,7 @@ if(NOT TARGET qubit_mvc_framework_lib)
       INTERFACE_INCLUDE_DIRECTORIES "${INCLUDE_PATH}"
       # OUTPUT_NAME qubit_mvc_framework
     )
-    set(NEW_NAME "$<TARGET_FILE_PREFIX:qubit_mvc_framework_lib>qubit_mvc_framework.$<TARGET_FILE_SUFFIX:qubit_mvc_framework_lib>")
+    set(NEW_NAME "$<TARGET_FILE_PREFIX:qubit_mvc_framework_lib>qubit_mvc_framework$<TARGET_FILE_SUFFIX:qubit_mvc_framework_lib>")
 
     add_custom_command(
         TARGET qubit_mvc_framework_lib POST_BUILD
