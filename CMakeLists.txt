@@ -96,19 +96,6 @@ add_library(qubit_mvc_framework_lib STATIC
     model/model_privates.cpp
 )
 
-message(STATUS "The current project name is: ${PROJECT_NAME}")
-
-if(NOT DEFINED VENDOR_BINARY_DIR)
-    set(VENDOR_BINARY_DIR "/Users/mac/projects/simple_mvc_sunday/build_Debug/vendor")
-endif()
-if(NOT DEFINED VENDOR_SRC_DIR)
-    set(VENDOR_SRC_DIR "/Users/mac/projects/simple_mvc_sunday/vendor/")
-endif()
-if(NOT DEFINED VENDOR_PREFIX_DIR)
-    set(VENDOR_PREFIX_DIR "/Users/mac/projects/simple_mvc_sunday/build_Debug/vendor")
-endif()
-
-
 if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
     string(REPLACE ":" ";" TMP_VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
     set(VENDOR_RECIPES_AS_LIST)
@@ -134,14 +121,19 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
 
-add_compile_definitions(FIREBASE_PROJECT_NAME="qubit-server-templete")
-add_compile_definitions(FIREBASE_PROJECT_NUMBER="000000000")
-add_compile_definitions(R_PROJECT_DOMAIN="tz.co.simplemvc")
-add_compile_definitions(PROJECT_DOMAIN="127.0.0.1")#simplemvc.co.tz
+macro(target_compile_definitions_with_default VAR DEFAULT_VALUE)
+    if(NOT DEFINED ${VAR})
+        target_compile_definitions(qubit_mvc_framework_lib PRIVATE ${VAR}="${DEFAULT_VALUE}")
+    else()
+        target_compile_definitions(qubit_mvc_framework_lib PRIVATE ${VAR}="${${VAR}}")
+    endif()
+endmacro()
 
-if(NOT DEFINED DEBUG_PUBLIC_PATH)
-    target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
-else()
-    target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${DEBUG_PUBLIC_PATH}")
-endif()
+target_compile_definitions_with_default(FIREBASE_PROJECT_NAME "qubit-server-templete")
+target_compile_definitions_with_default(FIREBASE_PROJECT_NUMBER "000000000")
+target_compile_definitions_with_default(R_PROJECT_DOMAIN "tz.co.simplemvc")
+target_compile_definitions_with_default(PROJECT_DOMAIN "127.0.0.1")
+target_compile_definitions_with_default(DEBUG_PUBLIC_PATH "${CMAKE_SOURCE_DIR}/public")
+
+
 
