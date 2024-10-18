@@ -133,12 +133,12 @@ endif()
 
 message(STATUS "VENDOR_SRC_DIR 4: ${VENDOR_SRC_DIR}")
 
-add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}")
+# add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}")
 
 # if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
 #     return() #to avoid recursion of including or add project
 # else()
-#     add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
+    add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
 # endif()
 
 
