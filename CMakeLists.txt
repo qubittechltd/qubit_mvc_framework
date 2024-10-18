@@ -145,19 +145,3 @@ else()
     target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${DEBUG_PUBLIC_PATH}")
 endif()
 
-include(${Qt6_DIR}/qt.toolchain.cmake)
-
-
-find_package(Qt6 REQUIRED COMPONENTS
-    Core
-    Sql
-    Network
-    Concurrent
-)
-
-target_link_libraries(qubit_mvc_framework_lib
-    Qt6::Core
-    Qt6::Sql
-    Qt6::Network
-    Qt6::Concurrent
-)
