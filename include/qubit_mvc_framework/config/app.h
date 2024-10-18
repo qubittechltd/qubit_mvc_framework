@@ -6,12 +6,12 @@
 
 struct QUBIT_MVC_APP {
     static const QUBIT_MVC_APP * instance();
-    QTimeZone timezone() const;
-    QString database_datetime_format() const;
-    int job_queue_limit() const;
-    int tries() const;
-    int retry_after() const;
-    int model_cache_time() const;
+    QTimeZone timezone() const volatile;
+    QString database_datetime_format() const volatile;
+    int job_queue_limit() const volatile;
+    int tries() const volatile;
+    int retry_after() const volatile;
+    int model_cache_time() const volatile;
 };
 
 
