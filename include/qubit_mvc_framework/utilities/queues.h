@@ -13,7 +13,7 @@
 #include <QDateTime>
 #include <qubit_mvc_framework/models/job_fail_model.h>
 #include <qubit_mvc_framework/models/job_model.h>
-
+#include <qubit_mvc_framework/config/app.h>
 
 class JobImpl {
     friend class Queue;
