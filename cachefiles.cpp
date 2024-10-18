@@ -37,12 +37,12 @@ const CacheFiles & CacheFiles::load_file(QObject *context,const QString &filePat
     auto itr = std::find(::files.begin(),::files.end(),filePath);
     if(itr == ::files.end()){
         bool found_in_debug=false, found =false;
-#ifdef QT_DEBUG
+// #ifdef QT_DEBUG
         if(!(found_in_debug=::watcher.files().contains(DEBUG_PUBLIC_PATH + filePath)) &&
            !(found=::watcher.files().contains("/var/www/html" + filePath))){
-#else
-        if(!(found=::watcher.files().contains("/var/www/html" + filePath))){
-#endif
+// #else
+        // if(!(found=::watcher.files().contains("/var/www/html" + filePath))){
+// #endif
             throw MVC_FILE_NOT_FOUND();
         }
         auto realPath = found_in_debug ? DEBUG_PUBLIC_PATH + filePath : "/var/www/html" + filePath;
