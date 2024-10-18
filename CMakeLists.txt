@@ -56,7 +56,6 @@ add_library(qubit_mvc_framework_lib STATIC
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/controller.h
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/google-services.json.h
 
-
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/model/db_info.h
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/model/macros.h
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/model/model.h
@@ -73,7 +72,14 @@ add_library(qubit_mvc_framework_lib STATIC
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/model/table_base.h
     ${INCLUDE_PATH}/qubit_mvc_framework/utilities/model/table_base_impl.h
 
-      # drwxr-xr-x  17 mac  staff    544 Oct 18 15:56 model
+    ${INCLUDE_PATH}/qubit_mvc_framework/config/app.h
+
+    ${INCLUDE_PATH}/qubit_mvc_framework/models/job_fail_model.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/models/job_model.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/models/migration_history.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/models/migration_model.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/models/user_model_impl.h
+
     cachefiles.cpp
     formdata.cpp
     middleware.cpp
