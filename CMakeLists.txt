@@ -10,6 +10,10 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
+if(DEFINED Qt6_DIR)
+    include(${Qt6_DIR}/qt.toolchain.cmake)
+endif()
+
 function(include_interface dot_cmake_path interface_lib_var)
     set(INTERFACE_LIB ${interface_lib_var})
     include(${dot_cmake_path})
