@@ -10,10 +10,6 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 
-if(DEFINED Qt6_DIR)
-    include(${Qt6_DIR}/qt.toolchain.cmake)
-endif()
-
 function(include_interface dot_cmake_path interface_lib_var)
     set(INTERFACE_LIB ${interface_lib_var})
     include(${dot_cmake_path})
@@ -129,11 +125,11 @@ else()
     list(JOIN VENDOR_RECIPES_AS_LIST ":" VENDOR_RECIPES_AS_STRING)
 endif()
 
-if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
-    target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
-else()
+if(NOT DEFINED RECIPE_NAME OR NOT RECIPE_NAME STREQUAL qubit_mvc_framework)
     add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
 endif()
+
+target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
 
 
 
