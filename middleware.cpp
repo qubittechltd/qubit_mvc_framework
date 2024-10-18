@@ -39,7 +39,7 @@ void urlHandler(QObject *server,const QString &path,QHttpServerResponder &respon
     }
 }
 
-void MIDDLEWARE::post_middleware(const QHttpServerRequest &request, QHttpServerResponder &&responder,RouterHandler routerHandler){
+void MIDDLEWARE_P::post_middleware(const QHttpServerRequest &request, QHttpServerResponder &&responder,RouterHandler routerHandler){
     auto server =  (QHttpServer *) parent();
     try{
         bool session_found;
@@ -65,7 +65,7 @@ void MIDDLEWARE::post_middleware(const QHttpServerRequest &request, QHttpServerR
     }
 }
 
-MIDDLEWARE::MIDDLEWARE(QHttpServer *server) : QObject(server){
+MIDDLEWARE_P::MIDDLEWARE_P(QHttpServer *server) : QObject(server){
 
     server->setMissingHandler([server](const QHttpServerRequest &request,QHttpServerResponder &&responder){
         auto path = request.url().path();
@@ -74,7 +74,7 @@ MIDDLEWARE::MIDDLEWARE(QHttpServer *server) : QObject(server){
 
     //WEB
     server->beforeController([server, this](bool &handled,const QHttpServerRequest &request,QHttpServerResponder &responder){
-        if(!doMiddleWare<MIDDLEWARE::WEB>(request)){
+        if(!doMiddleWare<MIDDLEWARE_P::WEB>(request)){
             return true;
         }
         auto session = request.session();
@@ -85,7 +85,7 @@ MIDDLEWARE::MIDDLEWARE(QHttpServer *server) : QObject(server){
 
     //AUTH
     server->beforeController([server, this](bool &handled,const QHttpServerRequest &request,QHttpServerResponder &responder){
-        if(!doMiddleWare<MIDDLEWARE::AUTH>(request)){
+        if(!doMiddleWare<MIDDLEWARE_P::AUTH>(request)){
             return true;
         }
         if(!request.session()->user()){
@@ -101,18 +101,18 @@ MIDDLEWARE::MIDDLEWARE(QHttpServer *server) : QObject(server){
     });
 }
 
-QHttpServer & MIDDLEWARE::server() const{
+QHttpServer & MIDDLEWARE_P::server() const{
     return *static_cast<QHttpServer*>(parent());
 }
 
-MIDDLEWARE::COMMON operator|(const MIDDLEWARE::COMMON c, const MIDDLEWARE::COMMON d){
+MIDDLEWARE_P::COMMON operator|(const MIDDLEWARE_P::COMMON c, const MIDDLEWARE_P::COMMON d){
     auto a = (qintptr)c;
     auto b = (qintptr)c;
-    return MIDDLEWARE::COMMON(a | b);
+    return MIDDLEWARE_P::COMMON(a | b);
 }
 
-MIDDLEWARE::COMMON operator&(const MIDDLEWARE::COMMON c, const MIDDLEWARE::COMMON d){
+MIDDLEWARE_P::COMMON operator&(const MIDDLEWARE_P::COMMON c, const MIDDLEWARE_P::COMMON d){
     auto a = (qintptr)c;
     auto b = (qintptr)d;
-    return MIDDLEWARE::COMMON(a & b);
+    return MIDDLEWARE_P::COMMON(a & b);
 }

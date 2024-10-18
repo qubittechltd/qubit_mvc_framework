@@ -12,7 +12,7 @@
 #include <tuple>
 #include <utility>
 
-class MIDDLEWARE : public QObject
+class MIDDLEWARE_P : public QObject
 {
 public:
     enum COMMON {
@@ -23,7 +23,7 @@ public:
     };
     Q_FLAG(COMMON)
 
-    explicit MIDDLEWARE(QHttpServer *server);
+    explicit MIDDLEWARE_P(QHttpServer *server);
 
     template<typename Rule = QHttpServerRouterRule, typename ... Args>
     bool route(Args && ... args){
@@ -43,7 +43,7 @@ public:
     }
 
     template<typename Rule = QHttpServerRouterRule, typename ... Args>
-    bool route(MIDDLEWARE::COMMON middleware,Args && ... args){
+    bool route(MIDDLEWARE_P::COMMON middleware,Args && ... args){
 
         if(!route(std::forward<Args>(args)...))
             return false;
@@ -69,7 +69,7 @@ public:
     }
 
     template<typename ... Args>
-    bool route(MIDDLEWARE::COMMON middleware,QHttpServerRequest::Method method,Args && ... args){
+    bool route(MIDDLEWARE_P::COMMON middleware,QHttpServerRequest::Method method,Args && ... args){
         auto args_tuple = std::make_tuple(std::forward<Args>(args)...);
         auto extended_tuple = std::tuple_cat(
             std::make_tuple(
@@ -98,7 +98,7 @@ public:
                         return true;
                     }
                 }
-                if((registered_middleware & exclusive) != MIDDLEWARE::COMMON::NONE){
+                if((registered_middleware & exclusive) != MIDDLEWARE_P::COMMON::NONE){
                     QRegularExpressionMatch match;
                     if(p.first->matches(request,&match)){
                         return true;
@@ -115,7 +115,7 @@ public:
     }
 
 private:
-    std::vector<std::pair<std::unique_ptr<QHttpServerRouterRule>,MIDDLEWARE::COMMON>> registered;
+    std::vector<std::pair<std::unique_ptr<QHttpServerRouterRule>,MIDDLEWARE_P::COMMON>> registered;
 
     template<typename ViewTraits , int ... Idx>
     void createPathRegexp(QHttpServerRouterRule * rule,QtPrivate::IndexesList<Idx...>){
@@ -128,6 +128,6 @@ private:
 
 };
 
-MIDDLEWARE::COMMON  operator|(const MIDDLEWARE::COMMON  c ,const MIDDLEWARE::COMMON  d );
-MIDDLEWARE::COMMON  operator&(const MIDDLEWARE::COMMON  c ,const MIDDLEWARE::COMMON  d );
+MIDDLEWARE_P::COMMON  operator|(const MIDDLEWARE_P::COMMON  c ,const MIDDLEWARE_P::COMMON  d );
+MIDDLEWARE_P::COMMON  operator&(const MIDDLEWARE_P::COMMON  c ,const MIDDLEWARE_P::COMMON  d );
 

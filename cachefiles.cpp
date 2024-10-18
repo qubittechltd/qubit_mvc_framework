@@ -40,10 +40,11 @@ const CacheFiles & CacheFiles::load_file(QObject *context,const QString &filePat
 #ifdef QT_DEBUG
         if(!(found_in_debug=::watcher.files().contains(DEBUG_PUBLIC_PATH + filePath)) &&
            !(found=::watcher.files().contains("/var/www/html" + filePath))){
+            qDebug("file not found in directory /var/www/html or %s%s",DEBUG_PUBLIC_PATH,filePath.toStdString().c_str());
 #else
         if(!(found=::watcher.files().contains("/var/www/html" + filePath))){
+            qDebug("file not found in directory /var/www/html");
 #endif
-            qDebug("file not found in directory /var/www/html or %s%s",DEBUG_PUBLIC_PATH,filePath.toStdString().c_str())
             throw MVC_FILE_NOT_FOUND();
         }
         auto realPath = found_in_debug ? DEBUG_PUBLIC_PATH + filePath : "/var/www/html" + filePath;
