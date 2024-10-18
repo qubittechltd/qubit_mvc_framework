@@ -16,6 +16,7 @@ public :
         firebase::AppOptions::LoadFromJsonConfig(json().data(),_options.get());
         Q_ASSERT_X(_options,"firebase::AppOptions can't be null","WGOOGLESERVICE");
     }
+    // virtual ~WGOOGLESERVICE();
 
     const QByteArray json () const { return QByteArray(GOOGLESERVICES_JSON_FILE); }
 

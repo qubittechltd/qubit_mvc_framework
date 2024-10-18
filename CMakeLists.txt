@@ -26,7 +26,37 @@ else()
 
 endif()
 
+set(INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 add_library(qubit_mvc_framework_lib STATIC
+
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/cachefiles.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/common_p.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/controller.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/core_functions.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/extra_defined_fmt.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/formdata.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/google-services.json.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/google_token_auth.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/integrity.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/middleware.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/migrator.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/qfirebaseapp.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/qrtdatabase.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/queues.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/redirect.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/sanitizer.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/secure.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/sequences.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/session.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/system_settings.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/utilities.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/watcher.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/session.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/controller.h
+    ${INCLUDE_PATH}/qubit_mvc_framework/utilities/google-services.json.h
+
+      # drwxr-xr-x  17 mac  staff    544 Oct 18 15:56 model
     cachefiles.cpp
     formdata.cpp
     middleware.cpp
