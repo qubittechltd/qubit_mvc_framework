@@ -23,7 +23,9 @@ void urlHandler(QObject *server,const QString &path,QHttpServerResponder &respon
             responder.sendResponse(QHttpServerResponse::fromFile(e.path));
         }catch (MVC_FILE_NOT_FOUND & e) {
             try{
-                urlHandler(server,"/errors/error_404.html",responder);
+                auto & c = CacheFiles::load_file(server,"/errors/error_404.html");
+                QHttpServerResponse response(c.params().data);
+                responder.sendResponse(response);
             }catch(const std::exception & e){
                 QHttpServerResponse response(
                     NOT_FOUND(),
