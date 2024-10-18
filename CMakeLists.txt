@@ -90,6 +90,7 @@ add_library(qubit_mvc_framework_lib STATIC
     session.cpp
     utilities.cpp
     app.cpp
+    queues.cpp
 )
 
 message(STATUS "The current project name is: ${PROJECT_NAME}")
