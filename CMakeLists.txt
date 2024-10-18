@@ -16,12 +16,6 @@ function(include_interface dot_cmake_path interface_lib_var)
     unset(INTERFACE_LIB)
 endfunction()
 
-if(DEFINED Qt6_DIR)
-    include(${Qt6_DIR}/qt.toolchain.cmake)
-else()
-
-endif()
-
 set(INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 include_directories(${INCLUDE_PATH})
