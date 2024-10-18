@@ -107,6 +107,12 @@ if(NOT TARGET qubit_mvc_framework_lib)
       INTERFACE_INCLUDE_DIRECTORIES "${INCLUDE_PATH}"
       # OUTPUT_NAME qubit_mvc_framework
     )
+    set(NEW_NAME "$<TARGET_FILE_PREFIX:qubit_mvc_framework_lib>qubit_mvc_framework.$<TARGET_FILE_SUFFIX:qubit_mvc_framework_lib>")
+
+    add_custom_command(
+        TARGET qubit_mvc_framework_lib POST_BUILD
+        COMMAND ${CMAKE_COMMAND} -E copy "$<TARGET_FILE:qubit_mvc_framework_lib>" "$<TARGET_FILE_DIR:qubit_mvc_framework_lib>/${NEW_NAME}"
+    )
 
     macro(target_compile_definitions_with_default VAR DEFAULT_VALUE)
         if(NOT DEFINED ${VAR})
