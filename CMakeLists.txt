@@ -81,18 +81,19 @@ add_library(qubit_mvc_framework_lib STATIC
     ${INCLUDE_PATH}/qubit_mvc_framework/models/user_model_impl.h
 
 
-    model/model_privates.cpp
+    app.cpp
     cachefiles.cpp
     formdata.cpp
     middleware.cpp
     qrtdatabase.cpp
+    queues.cpp
     redirect.cpp
     sanitizer.cpp
     secure.cpp
     session.cpp
     utilities.cpp
-    app.cpp
-    queues.cpp
+
+    model/model_privates.cpp
 )
 
 message(STATUS "The current project name is: ${PROJECT_NAME}")
