@@ -131,7 +131,7 @@ else()
     list(JOIN VENDOR_RECIPES_AS_LIST ":" VENDOR_RECIPES_AS_STRING)
 endif()
 
-message(STATUS "vendor/qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
+message(STATUS "VENDOR_SRC_DIR 4: ${VENDOR_SRC_DIR}")
 
 if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
     return() #to avoid recursion of including or add project
