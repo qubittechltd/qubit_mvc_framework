@@ -76,3 +76,10 @@ add_compile_definitions(FIREBASE_PROJECT_NUMBER="000000000")
 add_compile_definitions(R_PROJECT_DOMAIN="tz.co.simplemvc")
 add_compile_definitions(PROJECT_DOMAIN="127.0.0.1")#simplemvc.co.tz
 add_compile_definitions(-DDEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
+
+target_link_libraries(qubit_mvc_framework_lib
+    Qt6::Core
+    Qt6::Sql
+    Qt6::Network
+    Qt6::Concurrent
+)
