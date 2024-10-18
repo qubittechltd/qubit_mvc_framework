@@ -80,6 +80,8 @@ add_library(qubit_mvc_framework_lib STATIC
     ${INCLUDE_PATH}/qubit_mvc_framework/models/migration_model.h
     ${INCLUDE_PATH}/qubit_mvc_framework/models/user_model_impl.h
 
+
+    model/model_privates.cpp
     cachefiles.cpp
     formdata.cpp
     middleware.cpp
