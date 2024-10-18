@@ -56,7 +56,7 @@ if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
     string(REPLACE ";" " " VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
 else()
     set(VENDOR_RECIPES_AS_LIST)
-    set(VENDOR_RECIPES_AS_LIST APPEND "firebase_cpp_sdk.cmake" "qtbase.cmake" "openssl.cmake" "custom_http_server.cmake")
+    list(VENDOR_RECIPES_AS_LIST APPEND "firebase_cpp_sdk.cmake" "qtbase.cmake" "openssl.cmake" "custom_http_server.cmake")
     list(JOIN VENDOR_RECIPES_AS_LIST ";" VENDOR_RECIPES_AS_STRING)
 endif()
 
