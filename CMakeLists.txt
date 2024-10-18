@@ -53,7 +53,12 @@ endif()
 
 
 if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
-    string(REPLACE ":" " " VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
+    string(REPLACE ":" ";" TMP_VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
+    set(VENDOR_RECIPES_AS_LIST)
+    foreach(item IN LISTS TMP_VENDOR_RECIPES_AS_LIST)
+        message(STATUS "Item: ${item}")
+        list(APPEND VENDOR_RECIPES_AS_LIST ${item})
+    endforeach()
 else()
     set(VENDOR_RECIPES_AS_LIST)
     list(APPEND VENDOR_RECIPES_AS_LIST "firebase_cpp_sdk.cmake" "qtbase.cmake" "openssl.cmake" "custom_http_server.cmake")
