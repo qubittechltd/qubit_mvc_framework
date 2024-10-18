@@ -5,9 +5,10 @@
 #include <QTimeZone>
 
 struct QUBIT_MVC_APP {
-    static const QUBIT_MVC_APP * instance(){
-        return nullptr;
-    }
+    // static const QUBIT_MVC_APP * instance(){
+    //     return nullptr;
+    // }
+    static const QUBIT_MVC_APP * instance();
     QTimeZone timezone() const;
     QString database_datetime_format() const;
     int job_queue_limit() const;
