@@ -138,9 +138,10 @@ add_compile_definitions(FIREBASE_PROJECT_NAME="qubit-server-templete")
 add_compile_definitions(FIREBASE_PROJECT_NUMBER="000000000")
 add_compile_definitions(R_PROJECT_DOMAIN="tz.co.simplemvc")
 add_compile_definitions(PROJECT_DOMAIN="127.0.0.1")#simplemvc.co.tz
-add_compile_definitions(-DDEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
 
-
+if(NOT DEFINED DEBUG_PUBLIC_PATH)
+    target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
+endif()
 
 include(${Qt6_DIR}/qt.toolchain.cmake)
 
