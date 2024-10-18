@@ -140,8 +140,9 @@ add_compile_definitions(R_PROJECT_DOMAIN="tz.co.simplemvc")
 add_compile_definitions(PROJECT_DOMAIN="127.0.0.1")#simplemvc.co.tz
 
 if(NOT DEFINED DEBUG_PUBLIC_PATH)
-    target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="/Users/mac/projects/simple_mvc_sunday/public")
-    # target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
+    target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
+else()
+    target_compile_definitions(qubit_mvc_framework_lib PRIVATE DEBUG_PUBLIC_PATH="${DEBUG_PUBLIC_PATH}")
 endif()
 
 include(${Qt6_DIR}/qt.toolchain.cmake)

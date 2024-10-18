@@ -31,7 +31,6 @@ void urlHandler(QObject *server,const QString &path,QHttpServerResponder &respon
                     NOT_FOUND(),
                     QHttpServerResponse::StatusCode::NotFound
                 );
-                // response.addHeader("Content-Type","text/javascript");
                 responder.sendResponse(response);
             }
         }
