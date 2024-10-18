@@ -131,18 +131,13 @@ else()
     list(JOIN VENDOR_RECIPES_AS_LIST ":" VENDOR_RECIPES_AS_STRING)
 endif()
 
-message(STATUS "VENDOR_SRC_DIR 4: ${VENDOR_SRC_DIR}")
-
-# add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}")
-
-# if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
-#     return() #to avoid recursion of including or add project
-# else()
+if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
+    target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
+else()
     add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
-# endif()
+endif()
 
 
-target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
 
 
 
