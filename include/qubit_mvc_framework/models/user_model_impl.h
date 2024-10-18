@@ -17,12 +17,12 @@ Q_DECLARE_METATYPE(UserParamsImpl)
 
 class UserModelImpl  {
 public:
-    static bool init_db(QSqlDatabase & default_db){
-        return false;
-    }
-    operator bool(){
-        return false;
-    }
+    // static bool init_db(QSqlDatabase & default_db){
+    //     return false;
+    // }
+    // operator bool(){
+    //     return false;
+    // }
 
     // static inline auto Default() { return UserModelImpl();}
 

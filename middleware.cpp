@@ -6,6 +6,8 @@
 #include <QtHttpServer/QHttpServerRouterRule>
 #include <qubit_mvc_framework/utilities/session.h>
 
+QByteArray NOT_FOUND();
+
 void urlHandler(QObject *server,const QString &path,QHttpServerResponder &responder){
     try{
         try {
@@ -20,7 +22,16 @@ void urlHandler(QObject *server,const QString &path,QHttpServerResponder &respon
         }catch (MVC_FILE_STREAM_REQUIRED & e) {
             responder.sendResponse(QHttpServerResponse::fromFile(e.path));
         }catch (MVC_FILE_NOT_FOUND & e) {
-            urlHandler(server,"/errors/error_404.html",responder);
+            try{
+                urlHandler(server,"/errors/error_404.html",responder);
+            }catch(const std::exception & e){
+                QHttpServerResponse response(
+                    NOT_FOUND(),
+                    QHttpServerResponse::StatusCode::NotFound
+                );
+                // response.addHeader("Content-Type","text/javascript");
+                responder.sendResponse(response);
+            }
         }
         catch (MVC_FILE_PERMISSION_FAILED & e) {
             urlHandler(server,"/errors/error_403.html",responder);
@@ -100,3 +111,18 @@ MIDDLEWARE_P::COMMON operator&(const MIDDLEWARE_P::COMMON c, const MIDDLEWARE_P:
     auto b = (qintptr)d;
     return MIDDLEWARE_P::COMMON(a & b);
 }
+
+QByteArray NOT_FOUND(){
+    QByteArray data=""
+"<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\">\r\n"
+"<html>\r\n"
+"   <head>\r\n"
+"       <title>404 Not Found</title>\r\n"
+"   </head>\r\n"
+"   <body>\r\n"
+"       <h1>404 Not Found</h1>\r\n"
+"   </body>\r\n"
+"</html>\r\n";
+    return data;
+}
+
