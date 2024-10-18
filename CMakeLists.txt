@@ -102,7 +102,6 @@ if(NOT TARGET qubit_mvc_framework_lib)
         model/model_privates.cpp
     )
 
-
     set_target_properties(qubit_mvc_framework_lib PROPERTIES
       INTERFACE_INCLUDE_DIRECTORIES "${INCLUDE_PATH}"
       # OUTPUT_NAME qubit_mvc_framework
