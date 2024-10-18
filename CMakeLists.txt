@@ -1,6 +1,3 @@
-if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
-    return() #to avoid recursion of including or add project
-endif()
 
 cmake_minimum_required(VERSION 3.29)
 
@@ -27,6 +24,8 @@ else()
 endif()
 
 set(INCLUDE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
+include_directories(${INCLUDE_PATH})
 
 add_library(qubit_mvc_framework_lib STATIC
 
@@ -96,29 +95,10 @@ add_library(qubit_mvc_framework_lib STATIC
     model/model_privates.cpp
 )
 
-if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
-    string(REPLACE ":" ";" TMP_VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
-    set(VENDOR_RECIPES_AS_LIST)
-    foreach(item IN LISTS TMP_VENDOR_RECIPES_AS_LIST)
-        list(APPEND VENDOR_RECIPES_AS_LIST ${item})
-    endforeach()
-else()
-    set(VENDOR_RECIPES_AS_LIST)
-    list(APPEND VENDOR_RECIPES_AS_LIST "firebase_cpp_sdk.cmake" "qtbase.cmake" "openssl.cmake" "custom_http_server.cmake")
-    list(JOIN VENDOR_RECIPES_AS_LIST ":" VENDOR_RECIPES_AS_STRING)
-endif()
-
-message(STATUS "vendor/qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
-
-add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
-
 set_target_properties(qubit_mvc_framework_lib PROPERTIES
-  INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_CURRENT_SOURCE_DIR}/include"
+  INTERFACE_INCLUDE_DIRECTORIES "${INCLUDE_PATH}"
+  OUTPUT_NAME qubit_mvc_framework
 )
-
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
-
-target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
 
 macro(target_compile_definitions_with_default VAR DEFAULT_VALUE)
     if(NOT DEFINED ${VAR})
@@ -134,5 +114,25 @@ target_compile_definitions_with_default(R_PROJECT_DOMAIN "tz.co.simplemvc")
 target_compile_definitions_with_default(PROJECT_DOMAIN "127.0.0.1")
 target_compile_definitions_with_default(DEBUG_PUBLIC_PATH "${CMAKE_SOURCE_DIR}/public")
 
+if(DEFINED VENDOR_RECIPES_AS_STRING AND NOT DEFINED VENDOR_RECIPES_AS_LIST)
+    string(REPLACE ":" ";" TMP_VENDOR_RECIPES_AS_LIST "${VENDOR_RECIPES_AS_STRING}")
+    set(VENDOR_RECIPES_AS_LIST)
+    foreach(item IN LISTS TMP_VENDOR_RECIPES_AS_LIST)
+        list(APPEND VENDOR_RECIPES_AS_LIST ${item})
+    endforeach()
+else()
+    set(VENDOR_RECIPES_AS_LIST)
+    list(APPEND VENDOR_RECIPES_AS_LIST "firebase_cpp_sdk.cmake" "qtbase.cmake" "openssl.cmake" "custom_http_server.cmake")
+    list(JOIN VENDOR_RECIPES_AS_LIST ":" VENDOR_RECIPES_AS_STRING)
+endif()
 
+message(STATUS "vendor/qubit_mvc_framework/CMakeLists.txt vendor_recipes: ${VENDOR_RECIPES_AS_LIST}")
+
+if(DEFINED RECIPE_NAME AND RECIPE_NAME STREQUAL qubit_mvc_framework)
+    return() #to avoid recursion of including or add project
+endif()
+
+add_subdirectory("${VENDOR_SRC_DIR}" "${VENDOR_BINARY_DIR}/qubit_mvc_framework/vendor/")
+
+target_link_libraries(qubit_mvc_framework_lib  vendor_repo_libs)
 
