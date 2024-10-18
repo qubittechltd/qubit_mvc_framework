@@ -77,6 +77,18 @@ add_compile_definitions(R_PROJECT_DOMAIN="tz.co.simplemvc")
 add_compile_definitions(PROJECT_DOMAIN="127.0.0.1")#simplemvc.co.tz
 add_compile_definitions(-DDEBUG_PUBLIC_PATH="${CMAKE_SOURCE_DIR}/public")
 
+
+
+include(${Qt6_DIR}/qt.toolchain.cmake)
+
+
+find_package(Qt6 REQUIRED COMPONENTS
+    Core
+    Sql
+    Network
+    Concurrent
+)
+
 target_link_libraries(qubit_mvc_framework_lib
     Qt6::Core
     Qt6::Sql
