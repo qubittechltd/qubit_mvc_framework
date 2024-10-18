@@ -83,22 +83,6 @@ MIDDLEWARE_P::MIDDLEWARE_P(QHttpServer *server) : QObject(server){
         return true;
     });
 
-    //AUTH
-    server->beforeController([server, this](bool &handled,const QHttpServerRequest &request,QHttpServerResponder &responder){
-        if(!doMiddleWare<MIDDLEWARE_P::AUTH>(request)){
-            return true;
-        }
-        if(!request.session()->user()){
-            responder.writeStatusLine(QHttpServerResponder::StatusCode::Found);
-            responder.writeHeaders({
-                {"Location", "/login"}
-            });
-            responder.writeBody("\r\n\r\n");
-            handled=true;
-            return false;
-        }
-        return true;
-    });
 }
 
 QHttpServer & MIDDLEWARE_P::server() const{
